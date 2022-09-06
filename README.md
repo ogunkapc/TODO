@@ -1,6 +1,6 @@
 # todo
 
-A ToDo app
+A ToDo (Schedule) app with Flutter
 
 ## Getting Started
 
