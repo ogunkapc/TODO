@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TodoApp extends StatefulWidget {
@@ -69,7 +68,7 @@ class _TodoAppState extends State<TodoApp> {
                         const SizedBox(
                           height: 16,
                         ),
-                        RaisedButton(
+                        ElevatedButton(
                           onPressed: () {
                             addTodo(textController.text);
                             textController.clear();
@@ -134,7 +133,7 @@ class _TodoAppState extends State<TodoApp> {
                                     children: [
                                       const Text(
                                           "Are you Sure you want to delete?"),
-                                      RaisedButton(
+                                      ElevatedButton(
                                         onPressed: () {
                                           deleteTodo(index);
                                           Navigator.pop(context);
