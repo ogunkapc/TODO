@@ -51,7 +51,7 @@ class _TodoAppState extends State<TodoApp> {
           showModalBottomSheet(
               context: context,
               builder: (context) => Container(
-                    padding: EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(24),
                     child: Column(
                       children: [
                         TextField(
@@ -74,7 +74,7 @@ class _TodoAppState extends State<TodoApp> {
                             textController.clear();
                             Navigator.pop(context);
                           },
-                          child: Text("Add Todo"),
+                          child: const Text("Add Todo"),
                         )
                       ],
                     ),
