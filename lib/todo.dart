@@ -43,11 +43,22 @@ class _TodoAppState extends State<TodoApp> {
         ),
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(24),
-              child: Text(
-                "TODOs",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  FlutterLogo(
+                    size: 40,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "TODOs",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
             SizedBox(
