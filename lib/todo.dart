@@ -41,71 +41,108 @@ class _TodoAppState extends State<TodoApp> {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: _todoItems.length,
-                  itemBuilder: (context, index) => Card(
-                    child: ListTile(
-                      title: GestureDetector(
-                          onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => Container(
-                                padding: const EdgeInsets.all(24),
-                                child: Text(
-                                  _todoItems[index],
-                                ),
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(24),
+              child: Text(
+                "TODOs",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 200,
+              child: ListView.builder(
+                itemCount: _todoItems.length,
+                itemBuilder: (context, index) => Card(
+                  child: ListTile(
+                    title: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) => Container(
+                              padding: const EdgeInsets.all(24),
+                              child: Text(
+                                _todoItems[index],
                               ),
-                            );
-                          },
-                          child: Text(_todoItems[index])),
-                      trailing: IconButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 24, vertical: 50),
-                                    color: Colors.white,
-                                    height:
-                                        MediaQuery.of(context).size.height / 3,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Text(
-                                            "Are you Sure you want to delete?"),
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            deleteTodo(index);
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text("Delete Todo"),
-                                        ),
-                                      ],
-                                    ),
-                                  ));
+                            ),
+                          );
                         },
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
+                        child: Text(_todoItems[index])),
+                    trailing: IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 50),
+                                  color: Colors.white,
+                                  height:
+                                      MediaQuery.of(context).size.height / 3,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text(
+                                          "Are you Sure you want to delete?"),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          deleteTodo(index);
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text("Delete Todo"),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           // backgroundColor: Colors.indigo,
-          onPressed: () {},
-          child: const Icon(Icons.add, color: Colors.white),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) => Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: Column(
+                        children: [
+                          TextField(
+                            controller: textController,
+                            // onChanged: (value) {
+                            //   print(value);
+                            //   print(textController.text);
+                            // },
+                            decoration: const InputDecoration(
+                                label: Text("Enter TODO item"),
+                                labelStyle: TextStyle(fontSize: 18)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(elevation: 20),
+                            onPressed: () {
+                              addTodo(textController.text);
+                              textController.clear();
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Add TODO"),
+                          )
+                        ],
+                      ),
+                    ));
+          },
+          child: const Icon(Icons.add),
         ));
   }
 }
