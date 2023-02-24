@@ -85,17 +85,33 @@ class _TodoAppState extends State<TodoApp> {
                         showDialog(
                             context: context,
                             builder: (context) => Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20),
                                   margin: const EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 50),
-                                  color: Colors.white,
+                                      horizontal: 30, vertical: 200),
+                                  // color: Colors.white,
                                   height:
                                       MediaQuery.of(context).size.height / 3,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Text(
-                                          "Are you Sure you want to delete?"),
+                                        "Are you Sure you want to delete?",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Roboto',
+                                            letterSpacing: 0.3,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
                                       ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            elevation: 20),
                                         onPressed: () {
                                           deleteTodo(index);
                                           Navigator.pop(context);
