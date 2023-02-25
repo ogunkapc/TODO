@@ -10,7 +10,7 @@ class TodoApp extends StatefulWidget {
 class _TodoAppState extends State<TodoApp> {
   //! List of todo items
   final List _todoItems = [];
-  //! controller to help track changes in textfield
+  //! controller to help track changes in text field
   final textController = TextEditingController();
 
   //! Function to add todo item
@@ -29,6 +29,13 @@ class _TodoAppState extends State<TodoApp> {
     });
   }
 
+  //! Function that clears all TODO items
+  deleteAll() {
+    setState(() {
+      _todoItems.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +51,7 @@ class _TodoAppState extends State<TodoApp> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -56,17 +63,18 @@ class _TodoAppState extends State<TodoApp> {
                   ),
                   Text(
                     "TODOs",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 200,
+              height: 400,
               child: ListView.builder(
                 itemCount: _todoItems.length,
                 itemBuilder: (context, index) => Card(
                   child: ListTile(
+                    tileColor: Colors.white10,
                     title: GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
@@ -131,6 +139,65 @@ class _TodoAppState extends State<TodoApp> {
                 ),
               ),
             ),
+            const Align(
+              child: SizedBox(
+                height: 180,
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => Container(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 200),
+                            // color: Colors.white,
+                            height: MediaQuery.of(context).size.height / 3,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Are you sure you want to clear all TODOs?",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w300,
+                                      fontFamily: 'Roboto',
+                                      letterSpacing: 0.3,
+                                      color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          elevation: 20),
+                                      onPressed: () {
+                                        deleteAll();
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("Yes"),
+                                    ),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            elevation: 20),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text("No")),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ));
+                },
+                child: const Text("Clear"))
           ],
         ),
         floatingActionButton: FloatingActionButton(
