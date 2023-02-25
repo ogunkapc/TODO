@@ -29,7 +29,7 @@ class _TodoAppState extends State<TodoApp> {
     });
   }
 
-  //! Function that clears all TODO items
+  //! Function that clears all todo items
   deleteAll() {
     setState(() {
       _todoItems.clear();
