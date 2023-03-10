@@ -1,3 +1,4 @@
+import 'package:todo/auth/splash_screen.dart';
 import 'package:todo/todo.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.amber,
       ),
-      home: const TodoApp(),
+      home: const SplashScreen(),
     );
   }
 }
