@@ -1,4 +1,4 @@
-import 'package:todo/auth/splash_screen.dart';
+import 'package:todo/startup/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ToDo',
       debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData.dark(useMaterial3: true),
       theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber)
-            .copyWith(background: Colors.amber.shade50),
-      ),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.amber,
+              backgroundColor: Colors.amber.shade50)),
       home: const SplashScreen(),
     );
   }
