@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const LoginScreen()));
@@ -27,10 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          'GDSC TMA',
+          'ToDo',
           style: TextStyle(
             fontSize: 30,
-            color: Colors.blue.shade800,
             fontWeight: FontWeight.bold,
           ),
         ),
